@@ -105,7 +105,7 @@ $(document).ready(function() {
     $("input#new-phone-number").val("");
     $("input#new-email-address").val("");
     $("input#new-physical-address").val("");
-    let newAddress = new Address(inputtedEmailAddress, inputtedPhysical, Address);
+    //let newAddress = new Address(inputtedEmailAddress, inputtedPhysical, Address);
     let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedPhysicalAddress);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
