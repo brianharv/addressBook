@@ -44,7 +44,6 @@ function Contact(firstName, lastName, phoneNumber, emailAddress, physicalAddress
   this.phoneNumber = phoneNumber,
   this.emailAddress = emailAddress;
   this.physicalAddress = physicalAddress;
-
 }
 
 
@@ -67,7 +66,6 @@ function displayContactDetails(addressBookToDisplay) {
 
 function showContact(contactId) {
   const contact = addressBook.findContact(contactId);
-  $("#show-contact").show();
   $(".first-name").html(contact.firstName);
   $(".last-name").html(contact.lastName);
   $(".phone-number").html(contact.phoneNumber);
@@ -81,12 +79,14 @@ function showContact(contactId) {
 function attachContactListeners() {
   $("ul#contacts").on("click", "li", function() {
     showContact(this.id);
+    $("#show-contact").hide().fadeIn();
   });
   $("#buttons").on("click", ".deleteButton", function() {
     addressBook.deleteContact(this.id);
     $("#show-contact").hide();
     displayContactDetails(addressBook);
   });
+  
 };
 
 $(document).ready(function() {
@@ -99,14 +99,16 @@ $(document).ready(function() {
     const inputtedPhoneNumber = $("input#new-phone-number").val();
     const inputtedEmailAddress = $("input#new-email-address").val();
     const inputtedPhysicalAddress = $("input#new-physical-address").val();
+
     $("input#new-first-name").val("");
     $("input#new-last-name").val("");
     $("input#new-phone-number").val("");
     $("input#new-email-address").val("");
     $("input#new-physical-address").val("");
-
+    let newAddress = new Address(inputtedEmailAddress, inputtedPhysical, Address);
     let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedPhysicalAddress);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
   })
 })
+
